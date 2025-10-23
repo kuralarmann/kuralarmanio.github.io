@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Мұқағали Мақатаев — Портфолио</title>
+  <style>
+    :root{
+      --bg1:#f7f3ec;
+      --bg2:#fff7ea;
+      --accent:#b88b2f; /* алтын түсті */
+      --dark:#2c3e50;
+      --muted:#6b6b6b;
+      --card:#ffffffaa;
+      --shadow: 0 6px 18px rgba(44,62,80,0.12);
+      --radius:14px;
+      --pattern-color: rgba(184,139,47,0.12);
+      --max-width:1100px;
+    }
+
+    /* Бастапқы стиль — ұлттық ою-өрнек сияқты әсер беретін фон */
+    body{
+      margin:0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(184,139,47,0.03), transparent 10%),
+        linear-gradient(180deg,var(--bg1),var(--bg2));
+      color:var(--dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.6;
+    }
+
+    /* Контейнер орталау */
+    .wrap{
+      max-width:var(--max-width);
+      margin:28px auto;
+      padding:20px;
+    }
+
+    header{
+      background: linear-gradient(90deg,#fff 0%, rgba(255,255,255,0.8) 60%);
+      border-radius:18px;
+      padding:20px;
+      box-shadow:var(--shadow);
+      display:flex;
+      align-items:center;
+      gap:18px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* Ұлттық ою элементі — сол жақта */
+    .ornament{
+      width:96px;height:96px;border-radius:12px;
+      display:flex;align-items:center;justify-content:center;
+      background: conic-gradient(from 180deg at 50% 50%, var(--accent), transparent 40%);
+      box-shadow: inset 0 -8px 24px rgba(255,255,255,0.3);
+      flex-shrink:0;
+    }
+    .ornament svg{ width:66px;height:66px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.06)); }
+
+    header h1{
+      margin:0;font-size:20px;color:var(--dark);
+      letter-spacing:0.4px;
+    }
+    header p { margin:4px 0 0 0;color:var(--muted);font-size:13px; }
+
+    nav.topnav{
+      margin-left:auto;
+      display:flex;gap:10px;align-items:center;
+    }
+    nav.topnav a{
+      text-decoration:none;color:var(--dark);font-weight:700;padding:8px 12px;border-radius:10px;
+      transition:background .18s, color .18s;
+      font-size:13px;
+    }
+    nav.topnav a:hover{ background:rgba(106,27,154,0.06); color:var(--accent); }
+
+    /* Main layout */
+    .hero{
+      margin-top:20px;
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap:20px;
+      align-items:start;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow:var(--shadow);
+    }
+
+    .portrait{
+      text-align:center;
+    }
+    .portrait img{
+      width:100%; height:auto; border-radius:12px;
+      box-shadow:0 8px 30px rgba(44,62,80,0.10);
+    }
+    .portrait .meta{ margin-top:12px; font-weight:700; color:var(--dark); }
+
+    .content h2{ margin-top:0; color:var(--dark); font-size:20px; }
+    .content p{ margin:10px 0; color:#333; }
+
+    /* Цитаталар */
+    .quotes{
+      display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;
+    }
+    .quote{
+      flex:1 1 180px;
+      background:linear-gradient(180deg,rgba(255,255,255,0.85),#fff);
+      border-radius:12px;padding:12px;border-left:4px solid var(--accent);
+      font-style:italic;color:#2f2f2f;
+    }
+
+    /* Поэма-блок */
+    pre.poem{
+      white-space:pre-wrap;
+      background: linear-gradient(180deg,#fff,#fff9f0);
+      padding:14px;border-radius:12px;border-left:6px solid rgba(184,139,47,0.18);
+      font-family: "Times New Roman", serif; font-size:15px; color:#222;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    }
+
+    /* Видео */
+    .video iframe{ width:100%; height:360px; border-radius:12px; border:0; }
+
+    /* Контакты в подвале */
+    footer{
+      margin-top:20px;padding:18px;border-radius:14px;background:linear-gradient(180deg,#fff,#fff7e6);
+      display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+      box-shadow:var(--shadow);
+    }
+    .contacts{ display:flex;gap:12px;align-items:center;flex-wrap:wrap; }
+    .contacts a{
+      display:inline-flex;gap:8px;align-items:center;padding:10px 14px;border-radius:12px;
+      text-decoration:none;color:white;background:var(--dark);font-weight:700;
+      box-shadow: 0 6px 18px rgba(44,62,80,0.12);
+    }
+    .contacts a.tel{ background:#2c3e50; }
+    .contacts a.mail{ background:#6a1b9a; }
+    .contacts a.wa{ background:#25D366; color:#063; }
+    .contacts a.tg{ background:#0088cc; }
+    .contacts a.ig{ background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af); }
+
+    .author{
+      font-size:13px;color:var(--muted);
+    }
+
+    /* Жоғарыға батырмасы (плавающая) */
+    .top-btn{
+      position:fixed;right:18px;bottom:18px;background:var(--accent);color:white;padding:12px;border-radius:50%;
+      box-shadow:0 10px 30px rgba(184,139,47,0.2);cursor:pointer;border:0;font-weight:800;
+      display:flex;align-items:center;justify-content:center; z-index:9999;
+    }
+    .top-btn:hover{ transform:translateY(-3px); }
+
+    /* Әуен контролдары */
+    .music-control{
+      display:inline-flex;align-items:center;gap:10px;padding:6px 10px;border-radius:10px;
+      background:rgba(44,62,80,0.05); font-weight:700;
+    }
+    .music-control button{
+      padding:8px 12px;border-radius:8px;border:0;background:var(--accent);color:white;cursor:pointer;
+    }
+    .music-control button.secondary{
+      background:#6a1b9a;
+    }
+
+    /* Адаптив */
+    @media (max-width:900px){
+      .hero{ grid-template-columns:1fr; }
+      .video iframe{ height:220px; }
+      header{ flex-direction:column; gap:12px; align-items:flex-start; }
+      nav.topnav{ margin-left:0; width:100%; justify-content:space-between; gap:6px; }
+    }
+
+    @media (max-width:520px){
+      .contacts a{ padding:8px 10px; font-size:13px; }
+      .ornament{ width:72px;height:72px; }
+    }
+
+    /* Халықтық ою өрнегін фонға қосудың жеңіл эффекті */
+    .pattern {
+      position: absolute; right: -120px; top: -120px; width:520px; height:520px; opacity:0.12;
+      background:
+        radial-gradient(circle at 20% 20%, var(--pattern-color) 0 6%, transparent 7%),
+        repeating-conic-gradient(var(--pattern-color) 0 10deg, transparent 10deg 20deg);
+      transform: rotate(12deg);
+      pointer-events:none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <header>
+      <div class="ornament" aria-hidden="true">
+        <!-- Қарапайым ұлттық узор svg -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ұлттық ою">
+          <path d="M10 50 C25 10, 75 10, 90 50 C75 90, 25 90, 10 50 Z" fill="#ffffff" stroke="#b88b2f" stroke-width="4"/>
+          <circle cx="50" cy="50" r="6" fill="#b88b2f"/>
+        </svg>
+      </div>
+
+      <div>
+        <h1>Мұқағали Мақатаев</h1>
+        <p>Қазақтың ұлы лирик ақыны — өмірі, шығармашылығы және мұрасы</p>
+      </div>
+
+      <nav class="topnav" aria-label="Бөлімдер">
+        <a href="#bio">Өмірбаяны</a>
+        <a href="#works">Шығармашылығы</a>
+        <a href="#poem">Өлең</a>
+        <a href="#video">Бейне</a>
+        <a href="#contacts">Байланыс</a>
+      </nav>
+
+      <div class="pattern" aria-hidden="true"></div>
+    </header>
+
+    <main style="margin-top:22px;">
+
+      <div class="hero">
+        <aside class="card portrait" aria-labelledby="portrait-title">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Mukagali_Makataev.jpg" alt="Мұқағали Мақатаев портреті" />
+          <div class="meta" id="portrait-title">Мұқағали Сүлейменұлы Мақатаев (1931–1976)</div>
+
+          <div style="margin-top:12px; text-align:center;">
+            <!-- Музыка: егер қалағаныңа қарай ауыстырып қоюға болады -->
+            <div class="music-control" aria-hidden="false" style="margin-top:10px;">
+              <span>Әуен</span>
+              <button id="playBtn">Ойнату</button>
+              <button id="pauseBtn" class="secondary">Тоқтату</button>
+            </div>
+            <audio id="bgAudio" loop preload="none">
+              <!-- Егер бұл URL жұмыс істемесе, оны қалаған mp3-ке ауыстыр -->
+              <source src="https://upload.wikimedia.org/wikipedia/commons/1/11/Relaxing_instrumental_music.ogg" type="audio/ogg">
+              <source src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Calm_Music_%28Royalty-free%29.mp3" type="audio/mpeg">
+              Браузерің аудионы ойнай алмайды.
+            </audio>
+          </div>
+
+          <div style="margin-top:14px; font-size:13px; color:var(--muted);">
+            Сайт жасаған: <strong>Арман Құрал</strong><br>
+            «Автор: Арман Құрал» бөлімін төмен қара.
+          </div>
+        </aside>
+
+        <section class="content card">
+          <h2 id="bio">Өмірбаяны</h2>
+          <p>
+            Мұқағали Сүлейменұлы Мақатаев — қазақтың ұлы лирик ақыны. Ол 1931 жылы 9 ақпанда Алматы облысы,
+            Нарынақол ауданы Қарасаз ауылында дүниеге келген. Өмірі қысқа мерзімге созылғанымен, қазақ поэзиясына
+            терең із қалдырды.
+          </p>
+
+          <div class="quotes" aria-hidden="false">
+            <div class="quote">«Мен өлемін деп айтпаңдар, өлеңім мәңгі қалады.»</div>
+            <div class="quote">«Өлең деген — адамның жан-дүниесін сөйлететін тіл.»</div>
+            <div class="quote">«Адамға сүйскіту — ақынның басты міндеті.»</div>
+          </div>
+
+          <h2 id="works" style="margin-top:16px;">Шығармашылығы</h2>
+          <p>
+            Мұқағали — қазақ поэзиясының лирикалық желісін байытқан ақын. Оның өлеңдерінде туған жер, махаббат,
+            туған-туыс пен адамгершілік тақырыптары нақышты көрініс табады.
+          </p>
+
+          <h2 id="poem" style="margin-top:12px;">Өлең: «Мен ғашықпын»</h2>
+          <pre class="poem" aria-label="Өлең: Мен ғашықпын">
+Ғашықпын! Шын ғашықпын сол адамға!
+Мен болмасам, болмайын. Сол аман ба?!
+О, тәңірім! Неткен жан қайрылмайтын!
+Жүрегі еттен бе әлде қоладан ба?!
+
+Ғашықпын. Қайтіп оны жасыра алам,
+Бір алтын оның әр тал шашы маған.
+Сағынайын, таусыла сағынайын,
+Сағынышқа жаралған ғашық адам.
+          </pre>
+
+          <div style="margin-top:14px;" class="video">
+            <h2 id="video">Бейне және ән</h2>
+            <p>Музыка/өлең бейнелері — төмендегі видеодан тыңдай аласыз:</p>
+            <iframe src="https://www.youtube.com/embed/f7F_2w6bt0o" title="Сағындым сені" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+
+        </section>
+      </div> <!-- .hero -->
+
+      <!-- Қосымша бөлімдер -->
+      <section class="card" style="margin-top:18px;">
+        <h2>Арнайы: Мұқағали туралы фактілер</h2>
+        <ul>
+          <li>Мұқағали 1976 жылы 27 наурызда өмірден өтті, бірақ оның шығармалары мәңгі сақталған.</li>
+          <li>Ол бірнеше шетелдік ақындардың шығармаларын аударған — Шекспир, Уитмен т.б.</li>
+          <li>Қарасазда ақынға арналған мұражай және жыл сайын «Мұқағали оқулары» өткізіледі.</li>
+        </ul>
+      </section>
+
+      <!-- Контакт бөлім -->
+      <footer id="contacts" role="contentinfo">
+        <div style="min-width:220px;">
+          <div style="font-weight:800; color:var(--dark);">Тех. қолдау / Байланыс</div>
+          <div style="margin-top:8px; color:var(--muted); font-size:14px;">
+            Қолдау: +7 747 993 3520<br>
+            Email: armankural10@gmail.com
+          </div>
+        </div>
+
+        <div class="contacts" aria-label="Әлеуметтік желілер мен байланыс">
+          <a class="tel" href="tel:+77479933520" title="Қоңырау шалу">
+            📞 &nbsp;Телефон
+          </a>
+
+          <a class="mail" href="mailto:armankural10@gmail.com?subject=Сайт арқылы хабарлама" title="Email жіберу">
+            ✉️ &nbsp;Email
+          </a>
+
+          <a class="wa" href="https://wa.me/77479933520" target="_blank" rel="noopener noreferrer" title="WhatsApp-та жазу">
+            💬 &nbsp;WhatsApp
+          </a>
+
+          <a class="tg" href="https://t.me/kuralarmann" target="_blank" rel="noopener noreferrer" title="Telegram">
+            ✈️ &nbsp;Telegram
+          </a>
+
+          <a class="ig" href="https://www.instagram.com/kuralarmann" target="_blank" rel="noopener noreferrer" title="Instagram">
+            📸 &nbsp;Instagram
+          </a>
+        </div>
+
+        <div class="author" style="margin-left:auto; text-align:right; min-width:160px;">
+          <div><strong>Сайт авторы:</strong></div>
+          <div>Арман Құрал — жас веб-әзірлеуші</div>
+          <div style="margin-top:8px; font-size:12px; color:var(--muted)">© 2025</div>
+        </div>
+      </footer>
+
+    </main>
+
+  </div> <!-- .wrap -->
+
+  <!-- Жоғарыға батырмасы -->
+  <button id="toTop" class="top-btn" aria-label="Жоғарыға">↑</button>
+
+  <script>
+    // Жоғарыға батырмасы жұмыс істеуі
+    const toTop = document.getElementById('toTop');
+    toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+    window.addEventListener('scroll', ()=>{
+      if(window.scrollY > 300) toTop.style.display = 'flex';
+      else toTop.style.display = 'none';
+    });
+    // Бастапқыда жасыру
+    toTop.style.display = 'none';
+
+    // Музыка басқару
+    const audio = document.getElementById('bgAudio');
+    const playBtn = document.getElementById('playBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+
+    playBtn.addEventListener('click', async ()=>{
+      try{
+        await audio.play();
+        playBtn.textContent = 'Ойнатып тұр';
+      }catch(e){
+        // Кейбір браузерлер автоплейді блоктауы мүмкін
+        alert('Браузер аудионы автоматты түрде ойната алмады. Қолмен ойнатып көріңіз.');
+      }
+    });
+    pauseBtn.addEventListener('click', ()=>{
+      audio.pause();
+      playBtn.textContent = 'Ойнату';
+    });
+
+    // Сілтемелер қауіпсіз ашу (target _blank already)
+    // Қосымша — музыка табысты ойнатылса па тексеру
+    audio.addEventListener('play', ()=> playBtn.textContent = 'Ойнатып тұр');
+    audio.addEventListener('pause', ()=> playBtn.textContent = 'Ойнату');
+
+    // Қосымша: internal anchor smooth
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+  </script>
+
+</body>
+</html>
